@@ -1,0 +1,56 @@
+﻿  ConsoleApplication1.cpp
+C:\Program Files (x86)\Intel RealSense SDK 2.0\include\librealsense2\h\rs_option.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\MotionPlan.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\ConsoleApplication1.cpp(39,35): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  FtpControl.cpp
+  HLrobotconfig.cpp
+  MotionPlan.cpp
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\MotionPlan.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\MotionPlan.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Function.cpp
+C:\Program Files (x86)\Intel RealSense SDK 2.0\include\librealsense2\h\rs_option.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\MotionPlan.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  stdafx.cpp
+  RecDect.cpp
+C:\Program Files (x86)\Intel RealSense SDK 2.0\include\librealsense2\h\rs_option.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\MotionPlan.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(19,1): warning C4005: “PI”: 宏重定义
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.h(25): message : 参见“PI”的前一个定义
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(20,1): warning C4005: “fps”: 宏重定义
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.h(26): message : 参见“fps”的前一个定义
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(184,15): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(191,15): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(215,25): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(216,25): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(217,25): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(264,29): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(265,29): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\RecDect.cpp(266,29): warning C4244: “=”: 从“double”转换到“_Tp”，可能丢失数据
+          with
+          [
+              _Tp=float
+          ]
+  blueprint.cpp
+D:\blocks_robo\block_robo\ConsoleApplicationx64\ConsoleApplication1\MotionPlan.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  正在生成代码...
+  ConsoleApplication1.vcxproj -> D:\blocks_robo\block_robo\ConsoleApplicationx64\x64\Debug\ConsoleApplication1.exe
