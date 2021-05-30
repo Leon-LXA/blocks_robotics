@@ -129,22 +129,22 @@ void Login2robo()
 	Sleep(200);
 }
 
-bool traj_Generate(PosStruct start_pt, PosStruct end_pt)
+bool traj_Generate(PosStruct start_pt, PosStruct end_pt, int part_num)
 {
-	cout << "开始规划" << endl;
+	cout << "开始规划第"<<part_num<<"段曲线" << endl;
 	//梯型速度规划
 	CHLMotionPlan trajectory1;
 	trajectory1.SetPlanPoints(start_pt, end_pt);//单位分别为mm，degree
 	trajectory1.SetProfile(10, 1, 10);    //vel °/s， acc °/s.s, dec °/s.s
 	trajectory1.SetSampleTime(0.003);      //s
 	//trajectory1.GetPlanPoints();           //关节空间梯形速度规划
-	trajectory1.GetPlanPoints_line();      //笛卡尔空间直线轨迹梯形速度规划 
+	trajectory1.GetPlanPoints_line(part_num);      //笛卡尔空间直线轨迹梯形速度规划 
 
-	cout << "结束规划" << endl;
+	cout << "结束规划第" << part_num << "段曲线" <<endl;
 	return true;
 }
 
-bool move2catch()
+bool move2catch(int part_num)
 {
 	//为了保险起见，我们将松爪子放在这里
 	send_len = send(s_server, "[1# IO.Set DOUT(20104),0]", 100, 0);
@@ -166,7 +166,9 @@ bool move2catch()
 
 
 	//以下均为读取轨迹文件并沿着执行的过程
-	FtpControl::Upload("192.168.10.101", "data", "cart_zyz.txt", "severdata.txt");
+	string cart;
+	cart = (string)"./cart_zyz" + to_string(part_num) + (string)".txt";
+	FtpControl::Upload("192.168.10.101", "data", cart.c_str(), "severdata.txt");
 
 	//PPB读取data文件
 	send_len = send(s_server, "[4# PPB.ReadFile 1,/data/severdata.txt]", 100, 0);
@@ -191,7 +193,7 @@ bool move2catch()
 	return true;
 }
 
-bool move2place()
+bool move2place(int part_num)
 {
 	//抓取积木
 	send_len = send(s_server, "[1# IO.Set DOUT(20104),1]", 100, 0);
@@ -204,7 +206,9 @@ bool move2place()
 
 
 	//以下均为读取轨迹文件并沿着执行的过程
-	FtpControl::Upload("192.168.10.101", "data", "cart_zyz.txt", "severdata.txt");
+	string cart;
+	cart = (string)"./cart_zyz" + to_string(part_num) + (string)".txt";
+	FtpControl::Upload("192.168.10.101", "data", cart.c_str(), "severdata.txt");
 
 	//PPB读取data文件
 	send_len = send(s_server, "[2# PPB.ReadFile 1,/data/severdata.txt]", 100, 0);
@@ -226,6 +230,7 @@ bool move2place()
 	memset(recv_buf, '\0', sizeof(recv_buf));
 	Sleep(10000);
 
+	cout << "运行的延迟结束（借此观察一下延迟时间够不够）" << endl;
 	return true;
 }
 

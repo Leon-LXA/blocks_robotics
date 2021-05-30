@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "./eigen3/Eigen/Dense"
+#include <string>
 
 #define heightWaypoint 900
 
@@ -65,7 +66,7 @@ public:
 	void SetPlanPoints(PosStruct startPos, PosStruct endPos);		//输入起始点位和结束点位的笛卡尔坐标
 	void SetProfile(double vel, double acc, double dec);			//设置运动参数，速度、加速度和减速度
 	void GetPlanPoints();											//关节空间梯形速度规划
-	void GetPlanPoints_line();       								//笛卡尔空间直线轨迹梯形速度规划
+	void GetPlanPoints_line(int part_num);       								//笛卡尔空间直线轨迹梯形速度规划
 	void LFPB_Planning(double pos_start, double pos_end, int index);
 
 };

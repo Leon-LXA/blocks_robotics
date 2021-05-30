@@ -24,9 +24,8 @@ int main()
 	//回到安全点（同时也是摄像的初始位置）
 	//backhome();
 	 
-	// To do
 	 
-	//规划部分
+	//图像检测部分
 	 
 	//Step1. 对图像进行检测，获得积木坐标信息
 	Get_RGB();
@@ -47,7 +46,7 @@ int main()
 	
 
 
-	//执行部分
+	//规划与执行部分
 
 	//我想将S4,S5封装为四个函数，  即函数1：登录上电回零等操作
 	//								 函数2：松爪子->移动到检测到的积木点
@@ -56,31 +55,32 @@ int main()
 	//以上函数将放置在Function.cpp中
 	
 	
-
-	traj_Generate(home_pt, block_Vec[0]);
-	move2catch();
-
-	//从第一个积木点移动至第一个放置点
-	traj_Generate(block_Vec[0], pos_Desired[0]);
-	move2place();
-
-	traj_Generate(pos_Desired[0], block_Vec[1]);
-	move2catch();
-
-	traj_Generate(block_Vec[1], pos_Desired[1]);
-	move2place();
-
-	traj_Generate(pos_Desired[1], block_Vec[2]);
-	move2catch();
-
-	traj_Generate(block_Vec[2], pos_Desired[2]);
-	move2place();
-
-	traj_Generate(pos_Desired[2], block_Vec[3]);
-	move2catch();
-
-	traj_Generate(block_Vec[3], pos_Desired[3]);
-	move2place();
+	//规划部分
+	traj_Generate(home_pt,        block_Vec[0], 0);
+	
+	traj_Generate(block_Vec[0], pos_Desired[0], 1);
+	
+	traj_Generate(pos_Desired[0], block_Vec[1], 2);
+	
+	traj_Generate(block_Vec[1], pos_Desired[1], 3);
+	
+	traj_Generate(pos_Desired[1], block_Vec[2], 4);
+	
+	traj_Generate(block_Vec[2], pos_Desired[2], 5);
+	
+	traj_Generate(pos_Desired[2], block_Vec[3], 6);
+	
+	traj_Generate(block_Vec[3], pos_Desired[3], 7);
+	
+	//执行部分
+	move2catch(0);
+	move2place(1);
+	move2catch(2);
+	move2place(3);
+	move2catch(4);
+	move2place(5);
+	move2catch(6);
+	move2place(7);
 
 	if (end_process())
 	{

@@ -19,12 +19,12 @@ void close();
 void Login2robo();
 
 //松爪子并移动到抓取点
-bool move2catch();
+bool move2catch(int part_num);
 
-bool move2place();
+bool move2place(int part_num);
 
 bool end_process();
 
-bool traj_Generate(PosStruct start_pt, PosStruct end_pt);
+bool traj_Generate(PosStruct start_pt, PosStruct end_pt, int part_num);
 
 bool backhome();

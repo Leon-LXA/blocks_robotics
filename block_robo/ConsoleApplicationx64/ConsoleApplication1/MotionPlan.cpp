@@ -419,24 +419,23 @@ void CHLMotionPlan::LFPB_Planning(double pos_start, double pos_end, int index)
 	//cout << "LFPB" << endl;
 	//cout << index << ": " << pos_waypoint << endl;
 }
-void CHLMotionPlan::GetPlanPoints_line()
+void CHLMotionPlan::GetPlanPoints_line(int part_num)
 {
-	//完成代码
+	string cart,dicar;
+	cart = (string)"./cart_zyz" + to_string(part_num) + (string)".txt";
+	dicar = (string)"./dicar" + to_string(part_num) + (string)".txt";
+
+	//创建文件部分
 	ofstream outfile;               			//创建文件
-	outfile.open("./cart_zyz.txt");
+	//outfile.open("./cart_zyz.txt");
+	outfile.open(cart.c_str()); //例如打开./cart_zyz0.txt
 
 	ofstream outfile_dicar;
-	outfile_dicar.open("./dicar.txt");
-	/*outfile << mJointAngleBegin[0] << "  "
-			<< mJointAngleBegin[1] << "  "
-			<< mJointAngleBegin[2] << "  "
-			<< mJointAngleBegin[3] << "  "
-			<< mJointAngleBegin[4] << "  "
-			<< mJointAngleBegin[5] << "  ";
-	outfile << endl;//保存初始的时间、六个关节角度
-	*/
+	//outfile_dicar.open("./dicar.txt");
+	outfile_dicar.open(dicar.c_str());
 
-	//完成代码
+
+	
 
 	//通过规划得到每一段的曲线参数
 	double start_x = mStartMatrixData[3]*1000;
