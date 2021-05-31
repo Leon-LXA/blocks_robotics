@@ -9,6 +9,13 @@ vector<PosStruct> blueprint(int num)
 		pos_Desired.push_back(PosStruct{ 360, -150, 460, 0, 180, 228 });
 		pos_Desired.push_back(PosStruct{ 385, -175, 475, 0, 180, 138 });
 		pos_Desired.push_back(PosStruct{ 385, -125, 475, 0, 180, 138 });
+	case 6:
+		pos_Desired.push_back(PosStruct{ 410, -150, 460, 0, 180, 228 });//x,y,z,yaw,pitch,roll
+		pos_Desired.push_back(PosStruct{ 360, -150, 460, 0, 180, 228 });
+		pos_Desired.push_back(PosStruct{ 385, -175, 475, 0, 180, 138 });
+		pos_Desired.push_back(PosStruct{ 385, -125, 475, 0, 180, 138 });
+		pos_Desired.push_back(PosStruct{ 410, -150, 490, 0, 180, 228 });
+		pos_Desired.push_back(PosStruct{ 360, -150, 490, 0, 180, 228 });
 		break;
 	default:
 		break;

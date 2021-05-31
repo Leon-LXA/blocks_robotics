@@ -85,30 +85,30 @@ void Login2robo()
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1200);
+	Sleep(500);
 
 	send_len = send(s_server, "[2# Robot.PowerEnable 1,1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 200, 0);
 	cout << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1200);
+	Sleep(500);
 
 	send_len = send(s_server, "[3# System.Abort 1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1200);
+	Sleep(500);
 	send_len = send(s_server, "[4# System.Start 1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1200);
+	Sleep(500);
 
 	send_len = send(s_server, "[5# Robot.Home 1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1200);
+	Sleep(500);
 
 	send_len = send(s_server, "[6# IO.Set DOUT(20103),0]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
@@ -151,12 +151,12 @@ bool move2catch(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[stop XI]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1000);
+	Sleep(500);
 	send_len = send(s_server, "[2# IO.Set DOUT(20103),1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[expell]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1000);
+	Sleep(1500);
 	send_len = send(s_server, "[3# IO.Set DOUT(20103),0]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[stop expell]" << '\t' << recv_buf << endl;
@@ -182,13 +182,15 @@ bool move2catch(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[tostartpoint]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1000);
+	Sleep(500);
 	//ppb运行
 	send_len = send(s_server, "[6# PPB.Run 1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[run]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(10000);
+	Sleep(7000);
+	cout << "运行的延迟结束（借此观察一下延迟时间够不够）" << endl;
+
 
 	return true;
 }
@@ -200,7 +202,7 @@ bool move2place(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[XI]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(3000);
+	Sleep(500);
 
 
 
@@ -222,13 +224,13 @@ bool move2place(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[tostartpoint]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1000);
+	Sleep(500);
 	//ppb运行
 	send_len = send(s_server, "[4# PPB.Run 1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[run]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(10000);
+	Sleep(7000);
 
 	cout << "运行的延迟结束（借此观察一下延迟时间够不够）" << endl;
 	return true;

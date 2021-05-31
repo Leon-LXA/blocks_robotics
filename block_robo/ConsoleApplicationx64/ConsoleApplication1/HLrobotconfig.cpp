@@ -384,6 +384,10 @@ namespace HLRobot
             angle6 -= 360;
         if (angle6 < -360)
             angle6 += 360;
+        if (angle6 > 180)
+            angle6 -= 360;
+        if (angle6 < -180)
+            angle6 += 360;
     }
 
     void SetRobotJoint(double angle1, double angle2, double angle3, double angle4, double angle5, double angle6)

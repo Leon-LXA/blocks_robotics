@@ -42,7 +42,7 @@ int main()
 		return 0;
 	}
 	vector<PosStruct> pos_Desired;
-	pos_Desired = blueprint(4);
+	pos_Desired = blueprint(6);
 	
 
 
@@ -71,6 +71,14 @@ int main()
 	traj_Generate(pos_Desired[2], block_Vec[3], 6);
 	
 	traj_Generate(block_Vec[3], pos_Desired[3], 7);
+
+	traj_Generate(pos_Desired[3], block_Vec[4], 8);
+
+	traj_Generate(block_Vec[4], pos_Desired[4], 9);
+
+	traj_Generate(pos_Desired[4], block_Vec[5], 10);
+
+	traj_Generate(block_Vec[5], pos_Desired[5], 11);
 	
 	//执行部分
 	move2catch(0);
@@ -81,6 +89,10 @@ int main()
 	move2place(5);
 	move2catch(6);
 	move2place(7);
+	move2catch(8);
+	move2place(9);
+	move2catch(10);
+	move2place(11);
 
 	if (end_process())
 	{

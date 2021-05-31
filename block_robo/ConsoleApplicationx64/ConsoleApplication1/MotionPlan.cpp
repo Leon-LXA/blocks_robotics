@@ -382,7 +382,7 @@ void CHLMotionPlan::LFPB_Planning(double pos_start, double pos_end, int index)
 		as[index] = mAcc * 1000;
 
 	if (index == 2)
-		as[index] /= 10;
+		as[index] /= 20;
 
 	tb0[index] = td[index] - sqrt(td[index] * td[index] - 2 * (pos_waypoint - pos_start) / as[index]); //第一段的加速时间，我们预设两端轨迹时间相等
 	//cout <<"tb:" <<tb[index] << endl;
@@ -395,7 +395,7 @@ void CHLMotionPlan::LFPB_Planning(double pos_start, double pos_end, int index)
 		ae[index] = mAcc * 1000;
 
 	if (index == 2)
-		ae[index] /= 10;
+		ae[index] /= 20;
 
 	tb2[index] = td[index] - sqrt(td[index] * td[index] + 2 * (pos_end - pos_waypoint) / ae[index]); //第一段的加速时间，我们预设两端轨迹时间相等
 	//cout <<"tb:" <<tb[index] << endl;

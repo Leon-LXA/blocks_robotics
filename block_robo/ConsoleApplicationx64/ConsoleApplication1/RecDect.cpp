@@ -141,9 +141,9 @@ void My_rec::print()
 	cout << "********************************************************************************************************************" << endl << endl;
 
 	PosStruct temp;
-	temp.x = w_center.x * 1000;
-	temp.y = w_center.y * 1000;
-	temp.z = 460;
+	temp.x = w_center.x * 1000 + 4;
+	temp.y = w_center.y * 1000 + 6;
+	temp.z = 462;
 	temp.pitch = 180;
 	temp.roll = 138 - w_theta;
 	temp.yaw = 0;

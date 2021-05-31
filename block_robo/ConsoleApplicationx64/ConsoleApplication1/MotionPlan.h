@@ -3,7 +3,7 @@
 #include "./eigen3/Eigen/Dense"
 #include <string>
 
-#define heightWaypoint 900
+#define heightWaypoint 600
 
 using namespace std;
 using namespace Eigen;
