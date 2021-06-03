@@ -5,6 +5,8 @@
 
 #define heightWaypoint 600
 
+#define MAX_my(a, b) (((a) > (b)) ? (a) : (b))
+
 using namespace std;
 using namespace Eigen;
 

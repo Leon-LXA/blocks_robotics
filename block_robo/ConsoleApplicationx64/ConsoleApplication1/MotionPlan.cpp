@@ -373,7 +373,13 @@ void CHLMotionPlan::LFPB_Planning(double pos_start, double pos_end, int index)
 	if (index != 2)
 		pos_waypoint = 0.5 * (pos_start + pos_end);
 	else
-		pos_waypoint = heightWaypoint;
+	{
+		if (MAX_my(pos_start, pos_end) > 500)
+			pos_waypoint = heightWaypoint;
+		else
+			pos_waypoint = MAX_my(pos_start, pos_end) + 50;
+	}
+		
 	//仅针对z轴，存在爬升阶段与降落阶段，因此多运动两段时间,只需要把总时间弄长就行
 	//First Segment
 	if (pos_start > pos_waypoint)

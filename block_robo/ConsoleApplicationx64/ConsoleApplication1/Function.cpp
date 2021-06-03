@@ -83,50 +83,68 @@ void Login2robo()
 {
 	send_len = send(s_server, "[1# System.Login 0]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
-	cout << recv_buf << endl;
+	cout << recv_buf << "Login" << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(500);
+	Sleep(1200);
 
 	send_len = send(s_server, "[2# Robot.PowerEnable 1,1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 200, 0);
-	cout << recv_buf << endl;
+	cout << recv_buf << "PowerEnable" << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(500);
+	Sleep(1200);
 
 	send_len = send(s_server, "[3# System.Abort 1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
-	cout << recv_buf << endl;
+	cout << recv_buf << "Abort" << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(500);
+	Sleep(1200);
 	send_len = send(s_server, "[4# System.Start 1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
-	cout << recv_buf << endl;
+	cout << recv_buf << "Start" << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(500);
-
+	Sleep(1200);
 	send_len = send(s_server, "[5# Robot.Home 1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
-	cout << recv_buf << endl;
+	cout << recv_buf << "Home" << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(500);
+	Sleep(1200);
 
-	send_len = send(s_server, "[6# IO.Set DOUT(20103),0]", 100, 0);
-	recv_len = recv(s_server, recv_buf, 100, 0);
+	send_len = send(s_server, "[6# System.Auto 1]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << recv_buf << "Auto" << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(1200);
+
+	send_len = send(s_server, "[6# System.Speed 90]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << recv_buf << "Speed" << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(1200);
+
+	send_len = send(s_server, "[8# Robot.Frame 1,1]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << recv_buf << "Robot.Frame" << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(200);
+
+	send_len = send(s_server, "[9# IO.Set DOUT(20103),0]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
 	cout << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	
+	Sleep(200);
+
+	send_len = send(s_server, "[10# IO.Set DOUT(20104),0]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << recv_buf << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(200);
 	//PPB使能
 	send_len = send(s_server, "[7# PPB.Enable 1,1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[PPB_Enable]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
 	Sleep(200);
-	//关节坐标系
-	send_len = send(s_server, "[8# Robot.Frame 1,1]", 100, 0);
-	recv_len = recv(s_server, recv_buf, 100, 0);
-	cout << "[Frame2]" << '\t' << recv_buf << endl;
-	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(200);
+	
 }
 
 bool traj_Generate(PosStruct start_pt, PosStruct end_pt, int part_num)
@@ -146,6 +164,12 @@ bool traj_Generate(PosStruct start_pt, PosStruct end_pt, int part_num)
 
 bool move2catch(int part_num)
 {
+	/*send_len = send(s_server, "[14# WaitTime 1000]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << "delay 1000" << endl;
+	cout << recv_buf << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(500);*/
 	//为了保险起见，我们将松爪子放在这里
 	send_len = send(s_server, "[1# IO.Set DOUT(20104),0]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
@@ -156,22 +180,37 @@ bool move2catch(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[expell]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1500);
-	send_len = send(s_server, "[3# IO.Set DOUT(20103),0]", 100, 0);
-	recv_len = recv(s_server, recv_buf, 100, 0);
-	cout << "[stop expell]" << '\t' << recv_buf << endl;
-	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1000);
+	Sleep(3000);
+	//send_len = send(s_server, "[14# WaitTime 2000]", 100, 0);
+	//recv_len = recv(s_server, recv_buf, 200, 0);
+	//cout << "delay 1000" << endl;
+	//cout << recv_buf << endl;
+	//memset(recv_buf, '\0', sizeof(recv_buf));
+	//Sleep(500);
+	//send_len = send(s_server, "[14# IO.Set DOUT(20103),0]", 100, 0);
+	//recv_len = recv(s_server, recv_buf, 200, 0);
+	//cout << recv_buf << endl;
+	//memset(recv_buf, '\0', sizeof(recv_buf));
+	//Sleep(200);
+
+	//send_len = send(s_server, "[14# IO.Set DOUT(20104),0]", 100, 0);
+	//recv_len = recv(s_server, recv_buf, 200, 0);
+	//cout << recv_buf << endl;
+	//memset(recv_buf, '\0', sizeof(recv_buf));
+	//Sleep(200);
+	//cout << "双0" << endl;
 
 
 
 	//以下均为读取轨迹文件并沿着执行的过程
-	string cart;
+	string cart,sever,readsever;
 	cart = (string)"./cart_zyz" + to_string(part_num) + (string)".txt";
-	FtpControl::Upload("192.168.10.101", "data", cart.c_str(), "severdata.txt");
+	sever = (string)"severdata" + to_string(part_num) + (string)".txt";
+	readsever = (string)"[4# PPB.ReadFile 1,/data/severdata" + to_string(part_num) + (string)".txt]";
+	FtpControl::Upload("192.168.10.101", "data", cart.c_str(), sever.c_str());
 
 	//PPB读取data文件
-	send_len = send(s_server, "[4# PPB.ReadFile 1,/data/severdata.txt]", 100, 0);
+	send_len = send(s_server, readsever.c_str(), 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[ReadFile]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
@@ -188,8 +227,15 @@ bool move2catch(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[run]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(7000);
+	Sleep(6000);
 	cout << "运行的延迟结束（借此观察一下延迟时间够不够）" << endl;
+
+	/*send_len = send(s_server, "[14# WaitTime 3000]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << "delay 1000" << endl;
+	cout << recv_buf << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(500);*/
 
 
 	return true;
@@ -197,23 +243,36 @@ bool move2catch(int part_num)
 
 bool move2place(int part_num)
 {
+
+	/*send_len = send(s_server, "[14# WaitTime 1000]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << "delay 1000" << endl;
+	cout << recv_buf << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(500);*/
 	//抓取积木
 	send_len = send(s_server, "[1# IO.Set DOUT(20104),1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[XI]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
 	Sleep(500);
-
+	send_len = send(s_server, "[1# IO.Set DOUT(20103),0]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 100, 0);
+	cout << "[stop spell]" << '\t' << recv_buf << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(500);
 
 
 
 	//以下均为读取轨迹文件并沿着执行的过程
-	string cart;
+	string cart, sever, readsever;
 	cart = (string)"./cart_zyz" + to_string(part_num) + (string)".txt";
-	FtpControl::Upload("192.168.10.101", "data", cart.c_str(), "severdata.txt");
+	sever = (string)"severdata" + to_string(part_num) + (string)".txt";
+	readsever = (string)"[4# PPB.ReadFile 1,/data/severdata" + to_string(part_num) + (string)".txt]";
+	FtpControl::Upload("192.168.10.101", "data", cart.c_str(), sever.c_str());
 
 	//PPB读取data文件
-	send_len = send(s_server, "[2# PPB.ReadFile 1,/data/severdata.txt]", 100, 0);
+	send_len = send(s_server, readsever.c_str(), 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[ReadFile]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
@@ -230,9 +289,17 @@ bool move2place(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[run]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(7000);
+	Sleep(6000);
 
 	cout << "运行的延迟结束（借此观察一下延迟时间够不够）" << endl;
+
+
+	/*send_len = send(s_server, "[14# WaitTime 2000]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << "delay 1000" << endl;
+	cout << recv_buf << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(500);*/
 	return true;
 }
 
@@ -270,7 +337,13 @@ bool end_process()
 
 bool backhome()
 {
-	send_len = send(s_server, "[0# homept=410,0,800,0,180,138]", 100, 0);
+	send_len = send(s_server, "[0# Robot.Frame 1,2]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 100, 0);
+	cout << "[backhome]" << '\t' << recv_buf << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(1000);
+
+	send_len = send(s_server, "[0# Location homept=410,0,800,0,180,138]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[backhome]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
@@ -280,7 +353,13 @@ bool backhome()
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[backhome]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(1000);
+	Sleep(2000);
+
+	send_len = send(s_server, "[8# Robot.Frame 1,1]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << recv_buf << "Robot.Frame" << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(200);
 
 	return true;
 }
