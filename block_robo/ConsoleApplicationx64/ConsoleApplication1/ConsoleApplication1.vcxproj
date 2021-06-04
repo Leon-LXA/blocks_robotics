@@ -86,8 +86,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\opencv\build\include\opencv2;C:\opencv\build\include\opencv;C:\opencv\build\include;C:\Program Files (x86)\Intel RealSense SDK 2.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\opencv\build\x64\vc15\lib;..\Poco\lib;C:\Program Files (x86)\Intel RealSense SDK 2.0\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Poco\include;C:\opencv\build\include\opencv2;C:\opencv\build\include\opencv;C:\opencv\build\include;C:\Program Files (x86)\Intel RealSense SDK 2.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Poco\lib;C:\opencv\build\x64\vc15\lib;C:\Program Files (x86)\Intel RealSense SDK 2.0\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -154,7 +154,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>realsense2.lib;opencv_world349d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>realsense2.lib;opencv_world349.lib;PocoNet.lib;PocoFoundation.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

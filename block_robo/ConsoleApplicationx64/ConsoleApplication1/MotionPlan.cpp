@@ -74,9 +74,9 @@ RETURN:		<none>
 ***********************************************************************/
 void CHLMotionPlan::SetSampleTime(double sampleTime)
 {
-	if (sampleTime < 0.003)
+	if (sampleTime > 0.004)
 	{
-		mSampleTime = 0.003;
+		mSampleTime = 0.004;
 	}
 	else
 	{
@@ -374,7 +374,7 @@ void CHLMotionPlan::LFPB_Planning(double pos_start, double pos_end, int index)
 		pos_waypoint = 0.5 * (pos_start + pos_end);
 	else
 	{
-		if (MAX_my(pos_start, pos_end) > 500)
+		if (MAX_my(pos_start, pos_end) > 600)
 			pos_waypoint = heightWaypoint;
 		else
 			pos_waypoint = MAX_my(pos_start, pos_end) + 50;

@@ -154,7 +154,7 @@ bool traj_Generate(PosStruct start_pt, PosStruct end_pt, int part_num)
 	CHLMotionPlan trajectory1;
 	trajectory1.SetPlanPoints(start_pt, end_pt);//单位分别为mm，degree
 	trajectory1.SetProfile(10, 1, 10);    //vel °/s， acc °/s.s, dec °/s.s
-	trajectory1.SetSampleTime(0.003);      //s
+	trajectory1.SetSampleTime(0.004);      //s
 	//trajectory1.GetPlanPoints();           //关节空间梯形速度规划
 	trajectory1.GetPlanPoints_line(part_num);      //笛卡尔空间直线轨迹梯形速度规划 
 
@@ -175,23 +175,23 @@ bool move2catch(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[stop XI]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(500);
+	Sleep(200);
 	send_len = send(s_server, "[2# IO.Set DOUT(20103),1]", 100, 0);
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[expell]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(3000);
+	Sleep(500);
 	//send_len = send(s_server, "[14# WaitTime 2000]", 100, 0);
 	//recv_len = recv(s_server, recv_buf, 200, 0);
 	//cout << "delay 1000" << endl;
 	//cout << recv_buf << endl;
 	//memset(recv_buf, '\0', sizeof(recv_buf));
 	//Sleep(500);
-	//send_len = send(s_server, "[14# IO.Set DOUT(20103),0]", 100, 0);
-	//recv_len = recv(s_server, recv_buf, 200, 0);
-	//cout << recv_buf << endl;
-	//memset(recv_buf, '\0', sizeof(recv_buf));
-	//Sleep(200);
+	send_len = send(s_server, "[14# IO.Set DOUT(20103),0]", 100, 0);
+	recv_len = recv(s_server, recv_buf, 200, 0);
+	cout << recv_buf << endl;
+	memset(recv_buf, '\0', sizeof(recv_buf));
+	Sleep(200);
 
 	//send_len = send(s_server, "[14# IO.Set DOUT(20104),0]", 100, 0);
 	//recv_len = recv(s_server, recv_buf, 200, 0);
@@ -227,7 +227,7 @@ bool move2catch(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[run]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(6000);
+	Sleep(3500);
 	cout << "运行的延迟结束（借此观察一下延迟时间够不够）" << endl;
 
 	/*send_len = send(s_server, "[14# WaitTime 3000]", 100, 0);
@@ -289,7 +289,7 @@ bool move2place(int part_num)
 	recv_len = recv(s_server, recv_buf, 100, 0);
 	cout << "[run]" << '\t' << recv_buf << endl;
 	memset(recv_buf, '\0', sizeof(recv_buf));
-	Sleep(6000);
+	Sleep(3500);
 
 	cout << "运行的延迟结束（借此观察一下延迟时间够不够）" << endl;
 

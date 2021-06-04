@@ -143,9 +143,9 @@ void My_rec::print()
 	PosStruct temp;
 	temp.x = w_center.x * 1000 + 4;
 	temp.y = w_center.y * 1000 + 4;
-	temp.z = 464;
+	temp.z = 462;
 	temp.pitch = 180;
-	temp.roll = 138 - w_theta;
+	temp.roll = 138 - w_theta - 2;
 	temp.yaw = 0;
 	//PosStruct
 	extern vector<PosStruct> block_Vec;
@@ -284,7 +284,7 @@ void ColorDect(int, void*)
 {
 	srcImage = imread("test.jpg");
 	tempImage = srcImage.clone();
-	imshow("have read the origin pic", srcImage);
+	//imshow("have read the origin pic", srcImage);
 	//waitKey();
 	cvtColor(srcImage, srcImage, COLOR_BGR2HSV); //RGB to HSV
 	Scalar hsv_min1(h_min1, s_min, v_min);
@@ -309,7 +309,7 @@ void ColorDect(int, void*)
 	Scalar color(255, 0, 0);
 	drawContours(tempImage, contours, -1, color, 2, 8);
 	//namedWindow(W_RST, WINDOW_NORMAL);
-	imshow("W_RST", tempImage);
+	//imshow("W_RST", tempImage);
 	//waitKey();
 	imwrite("result.jpg", tempImage);
 
@@ -329,9 +329,11 @@ void ColorDect(int, void*)
 		{
 			line(tempImage, P[j], P[(j + 1) % 4], Scalar(255), 2);
 		}
-		imshow("MinAreaRect", tempImage);
+		//imshow("MinAreaRect", tempImage);
 		rec[i].print();
 	}
+
+	
 	//Point p2;
 	//p2.x = 950.478;
 	//p2.y = 400.628;

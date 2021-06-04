@@ -3,7 +3,7 @@
 #include "./eigen3/Eigen/Dense"
 #include <string>
 
-#define heightWaypoint 600
+#define heightWaypoint 670
 
 #define MAX_my(a, b) (((a) > (b)) ? (a) : (b))
 

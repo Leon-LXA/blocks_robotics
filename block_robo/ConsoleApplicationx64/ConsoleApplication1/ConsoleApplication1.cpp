@@ -13,6 +13,7 @@ using namespace std;
 using namespace cv;
 
 vector<PosStruct> block_Vec;//单位暂时是m，degree
+vector<double> block_dis;
 PosStruct home_pt{ 410,0,800,0,180,138 };
 
 int main()
@@ -30,9 +31,8 @@ int main()
 	//Step1. 对图像进行检测，获得积木坐标信息
 	Get_RGB();
 	ColorDect(0, 0);
-	//Step2. block_Vec中进行排序，其中包含了每一个积木的中心点位以及rpy信息，准备将其作为起始点进行搭建
-	// 
-	//Step3. 设置放置点，预计的放置点中心位置为平台的一侧，预设好一堆点位信息，vector容器大小对应于小鱼检测到的积木数的一个定值
+	
+	//Step2. 设置放置点，预计的放置点中心位置为平台的一侧，预设好一堆点位信息，vector容器大小对应于小鱼检测到的积木数的一个定值
 	//		 我们先预设为2层积木，即4块
 	// 
 	int num_detect = block_Vec.size();
@@ -43,8 +43,27 @@ int main()
 	}
 	vector<PosStruct> pos_Desired;
 	pos_Desired = blueprint(num_detect);
-	
+	cout <<"共" <<num_detect <<"个矩形"<< endl;
 
+	//Step3. block_Vec中进行排序，其中包含了每一个积木的中心点位以及rpy信息，准备将其作为起始点进行搭建
+	for (int i = 0; i < num_detect; i++)
+	{
+		for (int j = i + 1; j < num_detect; j++)
+		{
+			if (    sqrt( pow((block_Vec[i].x - 385), 2) + pow((block_Vec[i].y + 150), 2)) > sqrt(pow((block_Vec[j].x - 385), 2) + pow((block_Vec[j].y + 150), 2)) )
+			{
+				PosStruct temp;
+				temp = block_Vec[i];
+				block_Vec[i] = block_Vec[j];
+				block_Vec[j] = temp;
+			}
+		}
+	}
+	
+	//for (int i = 0; i < num_detect; i++)
+	//{
+	//	cout << block_Vec[i].x << " " << block_Vec[i].y << " "<< sqrt(pow((block_Vec[i].x - 385), 2) + pow((block_Vec[i].y + 150), 2)) << endl;
+	//}
 
 	//规划与执行部分
 
@@ -56,67 +75,20 @@ int main()
 	
 	
 	//规划部分
-	traj_Generate(home_pt,        block_Vec[0], 0);
-	
+	traj_Generate(home_pt, block_Vec[0], 0);
 	traj_Generate(block_Vec[0], pos_Desired[0], 1);
+	for (int i = 0; i < num_detect - 1; i++)
+	{
+		traj_Generate(pos_Desired[i], block_Vec[i + 1], 2 * i + 2);
+		traj_Generate(block_Vec[i + 1], pos_Desired[i + 1], 2 * i + 3);
+	}
 	
-	traj_Generate(pos_Desired[0], block_Vec[1], 2);
-	
-	traj_Generate(block_Vec[1], pos_Desired[1], 3);
-	
-	traj_Generate(pos_Desired[1], block_Vec[2], 4);
-	
-	traj_Generate(block_Vec[2], pos_Desired[2], 5);
-	
-	traj_Generate(pos_Desired[2], block_Vec[3], 6);
-	
-	traj_Generate(block_Vec[3], pos_Desired[3], 7);
-
-	traj_Generate(pos_Desired[3], block_Vec[4], 8);
-
-	traj_Generate(block_Vec[4], pos_Desired[4], 9);
-
-	traj_Generate(pos_Desired[4], block_Vec[5], 10);
-
-	traj_Generate(block_Vec[5], pos_Desired[5], 11);
-
-	traj_Generate(pos_Desired[5], block_Vec[6], 12);
-
-	traj_Generate(block_Vec[6], pos_Desired[6], 13);
-
-	traj_Generate(pos_Desired[6], block_Vec[7], 14);
-
-	traj_Generate(block_Vec[7], pos_Desired[7], 15);
-	
-	traj_Generate(pos_Desired[7], block_Vec[8], 16);
-
-	traj_Generate(block_Vec[8], pos_Desired[8], 17);
-
-	traj_Generate(pos_Desired[8], block_Vec[9], 18);
-
-	traj_Generate(block_Vec[9], pos_Desired[9], 19);
-
 	//执行部分
-	move2catch(0);
-	move2place(1);
-	move2catch(2);
-	move2place(3);
-	move2catch(4);
-	move2place(5);
-	move2catch(6);
-	move2place(7);
-	move2catch(8);
-	move2place(9);
-	move2catch(10);
-	move2place(11);
-	move2catch(12);
-	move2place(13);
-	move2catch(14);
-	move2place(15);
-	move2catch(16);
-	move2place(17);
-	move2catch(18);
-	move2place(19);
+	for (int i = 0; i < num_detect; i++)
+	{
+		move2catch(2 * i);
+		move2place(2 * i + 1);
+	}
 
 	if (end_process())
 	{
